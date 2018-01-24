@@ -37,10 +37,8 @@ namespace UTDDesignMongoDemo.Controllers
 
             //Do stuff with file into mongo
 
-            var connectionString = "mongodb://mongoUser:penguincity123@35.226.81.174";
-            var mongoclient = new MongoClient(connectionString);
-            IMongoDatabase db = mongoclient.GetDatabase("mongoDemo");
-            IMongoCollection<BsonDocument> collection = db.GetCollection<BsonDocument>("appointments");
+            FileStream onServerFile = new FileStream(filePath, FileMode.Open);
+            
 
             return RedirectToAction("SaveGood", "Home");
         }

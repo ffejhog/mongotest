@@ -331,3 +331,7 @@ E:\ProgrammingProjects\UTDDesignDemo\UTDDesignMongoDemo\bin\Debug\net461\System.
 E:\ProgrammingProjects\UTDDesignDemo\UTDDesignMongoDemo\bin\Debug\net461\System.Composition.TypedParts.dll
 E:\ProgrammingProjects\UTDDesignDemo\UTDDesignMongoDemo\bin\Debug\net461\System.Data.SqlClient.dll
 E:\ProgrammingProjects\UTDDesignDemo\UTDDesignMongoDemo\bin\Debug\net461\Microsoft.EntityFrameworkCore.Design.dll
+E:\ProgrammingProjects\UTDDesignDemo\UTDDesignMongoDemo\bin\Debug\net461\DnsClient.dll
+E:\ProgrammingProjects\UTDDesignDemo\UTDDesignMongoDemo\bin\Debug\net461\MongoDB.Bson.dll
+E:\ProgrammingProjects\UTDDesignDemo\UTDDesignMongoDemo\bin\Debug\net461\MongoDB.Driver.dll
+E:\ProgrammingProjects\UTDDesignDemo\UTDDesignMongoDemo\bin\Debug\net461\MongoDB.Driver.Core.dll

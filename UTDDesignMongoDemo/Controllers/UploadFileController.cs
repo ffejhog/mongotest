@@ -5,6 +5,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using MongoDB.Bson;
+using MongoDB.Driver;
 
 namespace UTDDesignMongoDemo.Controllers
 {
@@ -34,6 +36,11 @@ namespace UTDDesignMongoDemo.Controllers
             }
 
             //Do stuff with file into mongo
+
+            var connectionString = "mongodb://mongoUser:penguincity123@35.226.81.174";
+            var mongoclient = new MongoClient(connectionString);
+            IMongoDatabase db = mongoclient.GetDatabase("mongoDemo");
+            IMongoCollection<BsonDocument> collection = db.GetCollection<BsonDocument>("appointments");
 
             return RedirectToAction("SaveGood", "Home");
         }

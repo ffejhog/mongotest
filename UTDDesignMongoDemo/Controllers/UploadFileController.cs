@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MongoDB.Bson;
 using MongoDB.Driver;
+using UTDDesignMongoDemo.Models;
 
 namespace UTDDesignMongoDemo.Controllers
 {
@@ -37,8 +38,52 @@ namespace UTDDesignMongoDemo.Controllers
 
             //Do stuff with file into mongo
 
-            FileStream onServerFile = new FileStream(filePath, FileMode.Open);
-            
+            try
+            {
+                using (StreamReader reader = new StreamReader(filePath))
+                {
+                    
+                    String headerLine = reader.ReadLine();
+                    String line;
+                    while ((line = reader.ReadLine()) != null)
+                    {
+
+
+                        AppointmentModel newAppointment = new AppointmentModel();
+                        String[] seperatedValues = line.Split('|');
+
+                        if (seperatedValues.Length == 5)
+                        {
+                            newAppointment.LastName = seperatedValues[0];
+                            newAppointment.FirstName = seperatedValues[1];
+                            newAppointment.CalendarName = seperatedValues[2];
+                            newAppointment.StartDateTime = DateTime.ParseExact(seperatedValues[3],
+                                "yyyy-MM-dd HH:mm:ss", System.Globalization.CultureInfo.InvariantCulture);
+                            newAppointment.EndDateTime = DateTime.ParseExact(seperatedValues[4], "yyyy-MM-dd HH:mm:ss",
+                                System.Globalization.CultureInfo.InvariantCulture);
+                            newAppointment.Reason = "";
+                        }
+                        else if (seperatedValues.Length == 6)
+                        {
+                            newAppointment.LastName = seperatedValues[0];
+                            newAppointment.FirstName = seperatedValues[1];
+                            newAppointment.CalendarName = seperatedValues[2];
+                            newAppointment.StartDateTime = DateTime.ParseExact(seperatedValues[3],
+                                "yyyy-MM-dd HH:mm:ss", System.Globalization.CultureInfo.InvariantCulture);
+                            newAppointment.EndDateTime = DateTime.ParseExact(seperatedValues[4], "yyyy-MM-dd HH:mm:ss",
+                                System.Globalization.CultureInfo.InvariantCulture);
+                            newAppointment.Reason = seperatedValues[5];
+                        }
+
+                        //newAppointment now contains data to save to the database.
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("The file could not be read:");
+                Console.WriteLine(e.Message);
+            }
 
             return RedirectToAction("SaveGood", "Home");
         }

@@ -7,11 +7,11 @@ namespace UTDDesignMongoDemo.Models
 {
     public class AppointmentModel
     {
-        private string LastName { get; set; }
-        private string FirstName { get; set; }
-        private string CalendarName { get; set; }
-        private DateTime StartDateTime { get; set; }
-        private DateTime EndDateTime { get; set; }
-        private string Reason { get; set; }
+        public string LastName { get; set; }
+        public string FirstName { get; set; }
+        public string CalendarName { get; set; }
+        public DateTime StartDateTime { get; set; }
+        public DateTime EndDateTime { get; set; }
+        public string Reason { get; set; }
     }
 }

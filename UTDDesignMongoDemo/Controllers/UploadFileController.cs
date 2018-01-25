@@ -76,6 +76,7 @@ namespace UTDDesignMongoDemo.Controllers
                                 System.Globalization.CultureInfo.InvariantCulture);
                             newAppointment.Reason = seperatedValues[5];
                         }
+
                         appointmentsToInsert.Add(newAppointment);
                         
                         
@@ -89,7 +90,8 @@ namespace UTDDesignMongoDemo.Controllers
             }
 
             MongoAccessor database = new MongoAccessor();
-            database.addManyRecords(appointmentsToInsert, MongoAccessor.APPOINTMENTCOLLECTION);
+            database.addManyRecords(appointmentsToInsert, MongoAccessor.APPOINTMENTCOLLECTION); //This method is async so the ui doesn't freeze while data is put in the database. No need for an await becuase we don't need to wait for any data(as their is no return)
+
 
             return RedirectToAction("SaveGood", "Home");
         }

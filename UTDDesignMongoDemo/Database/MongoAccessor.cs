@@ -32,7 +32,7 @@ namespace UTDDesignMongoDemo.Database
 
         public async void addManyRecords(List<AppointmentModel> modelList, IMongoCollection<AppointmentModel> collection)
         {
-            await collection.InsertManyAsync(modelList);
+            await collection.InsertManyAsync(modelList); //This says don't return the data until this task is completed(But becuase their is no return, it doesn't matter)
         }
 
         public List<AppointmentModel> returnAll(IMongoCollection<AppointmentModel> collection)

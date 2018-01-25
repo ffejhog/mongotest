@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MongoDB.Bson;
 using MongoDB.Driver;
+using UTDDesignMongoDemo.Database;
 using UTDDesignMongoDemo.Models;
 
 namespace UTDDesignMongoDemo.Controllers
@@ -37,7 +39,7 @@ namespace UTDDesignMongoDemo.Controllers
             }
 
             //Do stuff with file into mongo
-
+            List<AppointmentModel> appointmentsToInsert = new List<AppointmentModel>();
             try
             {
                 using (StreamReader reader = new StreamReader(filePath))
@@ -74,8 +76,9 @@ namespace UTDDesignMongoDemo.Controllers
                                 System.Globalization.CultureInfo.InvariantCulture);
                             newAppointment.Reason = seperatedValues[5];
                         }
-
-                        //newAppointment now contains data to save to the database.
+                        appointmentsToInsert.Add(newAppointment);
+                        
+                        
                     }
                 }
             }
@@ -84,6 +87,9 @@ namespace UTDDesignMongoDemo.Controllers
                 Console.WriteLine("The file could not be read:");
                 Console.WriteLine(e.Message);
             }
+
+            MongoAccessor database = new MongoAccessor();
+            database.addManyRecords(appointmentsToInsert, MongoAccessor.APPOINTMENTCOLLECTION);
 
             return RedirectToAction("SaveGood", "Home");
         }

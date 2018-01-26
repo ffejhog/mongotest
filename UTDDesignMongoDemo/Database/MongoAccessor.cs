@@ -41,5 +41,10 @@ namespace UTDDesignMongoDemo.Database
             return list;
         }
 
+        public void deleteAll(IMongoCollection<AppointmentModel> collection)
+        {
+            collection.DeleteMany(_ => true); // Delete all values
+        }
+
     }
 }

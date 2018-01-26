@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using UTDDesignMongoDemo.Database;
 using UTDDesignMongoDemo.Models;
 
 namespace UTDDesignMongoDemo.Controllers
@@ -25,6 +26,14 @@ namespace UTDDesignMongoDemo.Controllers
         public IActionResult Read()
         {
             ViewData["Message"] = "Read Stuff here";
+
+            return View();
+        }
+
+        public IActionResult Delete()
+        {
+            MongoAccessor dbAccessor = new MongoAccessor();
+            dbAccessor.deleteAll(MongoAccessor.APPOINTMENTCOLLECTION);
 
             return View();
         }

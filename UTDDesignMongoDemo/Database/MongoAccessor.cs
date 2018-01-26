@@ -12,7 +12,7 @@ namespace UTDDesignMongoDemo.Database
 
     public class MongoAccessor
     {
-        private const string CONNECTIONSTRING = "mongodb://mongoUser:penguincity123@35.226.81.174";
+        private const string CONNECTIONSTRING = "mongodb://mongoUser:penguincity123@35.226.179.59";
         private static MongoClient _mongoclient;
         private static IMongoDatabase db;
         public static IMongoCollection<AppointmentModel> APPOINTMENTCOLLECTION;
